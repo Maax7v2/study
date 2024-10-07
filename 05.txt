@@ -1,0 +1,11 @@
+Ap = input('Enter the passband attenuation (dB): ');
+As = input('Enter the stopband attenuation (dB): ');
+fp = input('Enter the passband frequency (Hz): ');
+fs = input('Enter the stopband frequency (Hz): ');
+Fs = input('Enter the sampling frequency (Hz): ');
+wp = 2*fp/Fs;
+ws = 2*fs/Fs;
+[N,wn] = buttord(wp,ws,Ap,As)
+[b,a] = butter(N,wn);
+freqz(b,a);
+title('Butterworth frequency response')
