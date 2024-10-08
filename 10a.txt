@@ -1,0 +1,11 @@
+y=input('Enter the output sequence y(n):'); x=input('Enter the input sequence x(n):'); [h,r]=deconv(y,x);
+disp('The impulse response h(n) of the given system:'); disp(h);
+%graphical display h_length=0:length(h)-1; stem(h_length,h); xlabel('Time index n'); ylabel('Amplitude'); title('h(n)');
+%verification
+y_conv=conv(x,h)+r;
+disp('The ouput sequence y(n)=x(n)*h(n):'); disp(y_conv);
+
+h_length=input('enter the length of impulse response:'); num_coeffs=input('enter numerator coefficients:'); den_coeffs=input('enter denominator coefficients:'); h=impz(num_coeffs,den_coeffs,h_length);
+disp('The impulse response h(n) of the given system:'); disp(h');
+%graphical display n=0:h_length-1; stem(n,h);
+xlabel('Time index n'); ylabel('Amplitude'); title('h(n)');
