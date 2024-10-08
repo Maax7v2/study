@@ -1,0 +1,13 @@
+#include<stdio.h> main()
+{
+int m=4; /*Lengh of i/p samples sequence*/
+int n=4; /*Lengh of impulse response Co-efficients */ int i=0,j;
+int x[10]={1,2,3,4,0,0,0,0}; /*Input Signal Samples*/
+int h[10]={1,2,3,4,0,0,0,0}; /*Impulse Response Co-efficients*/ int *y;
+int y[10]; for(i=0;i<m+n-1;i++)
+{
+y[i]=0;
+for(j=0;j<=i;j++) y[i]+=x[j]*h[i-j];
+}
+for(i=0;i<m+n-1;i++) printf("%d ",y[i]);
+}
