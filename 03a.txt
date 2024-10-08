@@ -1,0 +1,59 @@
+% circular convolution
+first_seq = input('Enter the 1st sequence: ');
+sec_seq = input('Enter the 2nd sequence: ');
+n1 = length(first_seq);
+n2 = length(sec_seq);
+lmax = max(n1,n2);
+
+% zero padding
+if(n1 ~= n2)
+    if(n1 < lmax)
+        first_seq = [first_seq, zeros(1,(lmax-n1))];
+    elseif(n2 < lmax)
+            sec_seq = [sec_seq , zeros(1,(lmax-n2))];
+    end
+end
+% convolution
+cirConv = [];
+for i =1: lmax
+    temp = 0;
+    for temp_index = 1:lmax
+        if((i - temp_index) < 0)
+            index = (i-temp_index)+lmax+1;
+        elseif((i-temp_index) == 0)
+                index  = 1;
+        else
+            index = i-temp_index +1;
+        end
+        temp = temp+first_seq(temp_index)*sec_seq(index);
+        end
+        cirConv = [cirConv, temp];
+end
+disp('The circular convolution of 2 sequences is : ');
+disp(cirConv);
+
+
+%Matrix multiplication method
+first_seq=input('Enter the first sequence: ');  
+sec_seq=input('Enter the second sequence: ');  
+n1=length(first_seq); 
+n2=length(sec_seq);  
+l_max=max(n1,n2); 
+
+%zero padding  
+if(n1~=n2) 
+    if(n1<l_max) 
+        first_seq=[first_seq,zeros(1,(l_max-n1))];
+    elseif(n2<l_max)  
+            sec_seq=[sec_seq,zeros(1,(l_max-n2))]; 
+    end 
+end  
+temp_1=first_seq'; 
+disp('matrix for circular conv=');  
+disp(temp_1); 
+for i=1:l_max-1  
+temp_1=[temp_1,(circshift(first_seq',i))]; 
+end 
+cir_conv=temp_1*(sec_seq)'; 
+disp('The circular convolution of given two sequences is: ');  
+disp(cir_conv);
