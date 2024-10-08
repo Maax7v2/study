@@ -1,0 +1,16 @@
+wp1 = input('Enter the passband edge frequency (Hz): ');
+ws1 = input('Enter the stopband edge frequency (Hz): ');
+wsp = input('Enter the sampling frequency (Hz): ');
+wp2 = 2*pi*wp1/wsp;
+ws2 = 2*pi*ws1/wsp;
+tb = ws2-wp2;
+N = ceil(6.6*pi/tb);
+wc = (ws2+wp2)/2;
+wc = wc/pi;
+h = fir1(N,wc,hanning(N+1));
+disp('The filter coefficients are: ');
+disp(h);
+[m,w] = freqz(h,1,128);
+mag = 20*log10(abs(m));
+plot(wsp*w/(2*pi),mag);
+title('FIR (Hanning) Freq response')
