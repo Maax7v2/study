@@ -1,0 +1,32 @@
+% N-point DFT in MATLAB with magnitude and phase
+clc;
+clear;
+
+% Input the length of the DFT
+N = input('Enter the length of the sequence: ');
+
+% Input the sequence to compute the DFT
+x = input('Enter the sequence: ');
+% Initialize the DFT result
+X = zeros(N, 1);
+
+% Compute the DFT
+for k = 0:N-1
+    for n = 0:N-1
+        X(k+1) = X(k+1) + x(n+1) * exp(-1j * 2 * pi * k * n / N);
+    end
+end
+
+% Compute the magnitude and phase
+magnitude_X = abs(X);       % Magnitude of the DFT
+phase_X = angle(X);         % Phase of the DFT
+
+% Display the results
+disp('DFT of the sequence:');
+disp(X);
+
+disp('Magnitude of the DFT:');
+disp(magnitude_X);
+
+disp('Phase of the DFT (in radians):');
+disp(phase_X);
