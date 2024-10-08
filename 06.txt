@@ -1,0 +1,11 @@
+Ap = input('Enter the passband attenuation (dB): ');
+As = input('Enter the stopband attenuation (dB): ');
+fp = input('Enter the passband frequency (Hz): ');
+fs = input('Enter the stopband frequency (Hz): ');
+Fs = input('Enter the sampling frequency (Hz): ');
+w1 = 2*fp/Fs;
+w2 = 2*fs/Fs;
+[N,wn] = cheb1ord(w1,w2,Ap,As)
+[b,a] = cheby1(N,Ap,wn);
+freqz(b,a);
+title('Chebyshev frequency response')
